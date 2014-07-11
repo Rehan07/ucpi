@@ -12,5 +12,4 @@ Features v1.1:
 Features v1.2:
 - Supports FTP
 
-Information:
-This is version 1.1, And i have got more suggestions from people so i started developing version 1.2, so sit tight.
+Version 1.2 is released!
