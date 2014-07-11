@@ -12,7 +12,17 @@ else
 {
 	require_once 'Config/Lite.php';
 	
-	$user['Name'] = $_SESSION['Username'].".ini";
+	$FTP_HOST = "HOST";
+	$FTP_USER = "USER";
+	$FTP_PASS = "PASS";
+
+	// set up basic connection
+	$cHandle = ftp_connect($FTP_HOST) or die("Server can't connect to ftp");
+
+	// login with username and password
+	$login_result = ftp_login($cHandle, $FTP_USER, $FTP_PASS) or die("Server can not login to ftp!");
+	
+	$user['Name'] = 'ftp://'.$FTP_USER.':'.$FTP_PASS.'@YOURSERVERIPHERE/samp03/users/'.$_SESSION['Username'].'.ini';
 	
 	$file = new Config_Lite($user['Name']);//Get INI file
 	
@@ -115,7 +125,7 @@ else
 				}
 				else
 				{
-					$user['Name'] = $_POST['name'].".ini";
+					$user['Name'] = 'ftp://'.$FTP_USER.':'.$FTP_PASS.'@YOURSERVERIPHERE/samp03/users/'.$_POST['name'].'.ini';
 					
 					$file = new Config_Lite($user['Name']);//Get INI file
 					if (!file_exists($user['Name'])) {
@@ -167,7 +177,7 @@ else
 				}
 				else
 				{
-					$user['Name'] = $_POST['name'].".ini";
+					$user['Name'] = 'ftp://'.$FTP_USER.':'.$FTP_PASS.'@YOURSERVERIPHERE/samp03/users/'.$_POST['name'].'.ini';
 					
 					$file = new Config_Lite($user['Name']);//Get INI file
 					if (!file_exists($user['Name'])) {
